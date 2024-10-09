@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MASTER TECH</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #4a90e2;
-            --secondary-color: #50c878;
-            --accent-color: #ff6b6b;
-            --background-color: #f0f4f8;
-            --text-color: #333333;
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --background-color: #f5f7fa;
+            --surface-color: #ffffff;
+            --text-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
             background-color: var(--background-color);
@@ -24,172 +27,98 @@
             margin: 0 auto;
             padding: 20px;
         }
-        .logo-container {
-            text-align: center;
-            margin-bottom: 20px;
+        .header {
+            background-color: var(--primary-color);
+            color: var(--surface-color);
+            padding: 20px 0;
+            box-shadow: var(--shadow);
+        }
+        .header-content {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
         }
         .logo {
-            width: 100px;
-            height: auto;
-            margin-right: 20px;
+            font-size: 24px;
+            font-weight: 600;
         }
-        .company-name {
-            font-size: 36px;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-        .login-options {
+        .nav-buttons {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 20px;
+            gap: 10px;
         }
         .btn {
-            padding: 12px 24px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: var(--primary-color);
-            color: white;
+            padding: 10px 20px;
             border: none;
             border-radius: 5px;
-            transition: background-color 0.3s ease;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
         }
-        .btn:hover {
-            background-color: #3a7bc8;
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: var(--surface-color);
+        }
+        .btn-primary:hover {
+            background-color: #27ae60;
+        }
+        .btn-secondary {
+            background-color: var(--surface-color);
+            color: var(--primary-color);
+        }
+        .btn-secondary:hover {
+            background-color: #f0f0f0;
         }
         .dashboard {
             display: none;
+            margin-top: 30px;
         }
-        .team-grid {
+        .card {
+            background-color: var(--surface-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
         }
-        .team-block {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-        .team-block:hover {
-            transform: translateY(-5px);
-        }
-        .team-block h3 {
-            margin-top: 0;
-            color: var(--primary-color);
-        }
-        .team-members {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-        .team-member {
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 14px;
-        }
-        .project-info {
-            margin-top: 10px;
-        }
-        .progress-bar {
-            width: 100%;
-            background-color: #e0e0e0;
-            height: 10px;
-            border-radius: 5px;
-            overflow: hidden;
-            margin-bottom: 10px;
-        }
-        .progress {
-            height: 100%;
-            background-color: var(--secondary-color);
-            width: 0;
-        }
-        .employee-info {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .project-list {
-            margin-top: 20px;
-        }
-        .project-item {
-            background-color: #f7f9fa;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border-left: 4px solid var(--primary-color);
-        }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .team-details {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin-top: 20px;
-        }
-        .team-stats {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-        .stat-item {
+        .stat-card {
             text-align: center;
         }
         .stat-value {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--primary-color);
+            font-size: 36px;
+            font-weight: 600;
+            color: var(--secondary-color);
         }
-        .employee-stats {
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-color);
+            opacity: 0.7;
+        }
+        .attendance-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
             margin-top: 20px;
         }
-        .employee-stat-item {
-            background-color: #f7f9fa;
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-        }
-        .employee-stat-value {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-        .team-member-list {
-            margin-top: 20px;
-        }
-        .team-member-item {
-            background-color: #f0f4f8;
+        .attendance-day {
+            background-color: #f0f0f0;
             padding: 10px;
-            margin-bottom: 10px;
             border-radius: 5px;
-            cursor: pointer;
+            text-align: center;
+            font-size: 14px;
         }
-        .team-member-item:hover {
-            background-color: #e0e6ed;
-        }
-        .member-details {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin-top: 20px;
+        .attendance-day.present {
+            background-color: var(--secondary-color);
+            color: var(--surface-color);
         }
         .form-group {
             margin-bottom: 15px;
@@ -197,12 +126,15 @@
         .form-group label {
             display: block;
             margin-bottom: 5px;
+            font-weight: 600;
         }
-        .form-group input {
+        .form-group input,
+        .form-group select {
             width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
         }
         .modal {
             display: none;
@@ -216,13 +148,13 @@
             background-color: rgba(0,0,0,0.4);
         }
         .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
+            background-color: var(--surface-color);
+            margin: 10% auto;
             padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
             border-radius: 10px;
+            width: 50%;
+            max-width: 500px;
+            box-shadow: var(--shadow);
         }
         .close {
             color: #aaa;
@@ -233,21 +165,43 @@
         }
         .close:hover,
         .close:focus {
-            color: black;
+            color: #000;
             text-decoration: none;
             cursor: pointer;
         }
-        #taskForm {
-            margin-top: 20px;
+        #notificationArea {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
         }
-        #employeeTasks {
-            margin-top: 20px;
-        }
-        .task-item {
-            background-color: #f0f4f8;
-            padding: 10px;
+        .notification {
+            background-color: var(--primary-color);
+            color: var(--surface-color);
+            padding: 15px;
             margin-bottom: 10px;
             border-radius: 5px;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .notification.error {
+            background-color: var(--accent-color);
+        }
+        .task-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .task-item {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -260,121 +214,148 @@
             border-radius: 3px;
             cursor: pointer;
         }
-        #notificationArea {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-        .notification {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 15px;
+        .team-member {
+            display: flex;
+            align-items: center;
             margin-bottom: 10px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            opacity: 0;
-            transform: translateY(-20px);
-            transition: opacity 0.3s, transform 0.3s;
         }
-        .notification.show {
-            opacity: 1;
-            transform: translateY(0);
+        .team-member .crown {
+            margin-left: 5px;
+            color: gold;
+        }
+        .dashboard-nav {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        
+        .dashboard-section {
+            display: none;
+        }
+        
+        .dashboard-section.active {
+            display: block;
+        }
+        
+        .skill-bar {
+            background-color: #f0f0f0;
+            height: 20px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .skill-progress {
+            background-color: var(--secondary-color);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease-in-out;
+        }
+        
+        .training-item {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .feedback-item {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo"><i>MASTER TECH..</i></div>
+                <div class="nav-buttons" id="navButtons">
+                    <button class="btn btn-secondary" onclick="showLoginModal('admin')">Admin Login</button>
+                    <button class="btn btn-secondary" onclick="showLoginModal('employee')">Employee Login</button>
+                    <button class="btn btn-primary" onclick="showSignUpModal()">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
     <div class="container">
-        <div class="logo-container">
-            <img src="logo.png" alt="MASTER TECH Logo" class="logo">
-            <div class="company-name">MASTER TECH</div>
-        </div>
-        <div id="loginPage">
-            <div class="login-options">
-                <button class="btn" onclick="showLoginModal('admin')">Login as Admin</button>
-                <button class="btn" onclick="showLoginModal('employee')">Login as Employee</button>
-                <button class="btn" onclick="showSignUpModal()">Sign Up</button>
-            </div>
-        </div>
         <div id="adminDashboard" class="dashboard">
-            <div class="header">
-                <h2>Admin Dashboard</h2>
-                <div>
-                    <button class="btn" onclick="logout()">Logout</button>
+            <div class="card">
+                <div class="card-title">Teams Overview</div>
+                <div class="grid" id="teamGrid">
+                    <!-- Team cards will be dynamically generated -->
                 </div>
             </div>
-            <div class="team-grid">
-                <!-- Team blocks will be dynamically generated -->
-            </div>
-            <div id="teamDetails" class="team-details" style="display: none;">
-                <h3 id="teamName"></h3>
+            <div id="teamDetails" class="card" style="display: none;">
+                <div class="card-title" id="teamName"></div>
                 <p id="teamDescription"></p>
-                <div class="project-info">
-                    <p>Current Project: <span id="currentProject"></span></p>
-                    <p>Progress:</p>
-                    <div class="progress-bar">
-                        <div id="progressBar" class="progress"></div>
-                    </div>
-                    <p>Completed Projects: <span id="completedProjects"></span></p>
-                </div>
-                <div class="team-stats">
-                    <div class="stat-item">
+                <div class="grid">
+                    <div class="stat-card">
                         <div class="stat-value" id="teamEfficiency"></div>
-                        <div>Team Efficiency</div>
+                        <div class="stat-label">Team Efficiency</div>
                     </div>
-                    <div class="stat-item">
+                    <div class="stat-card">
                         <div class="stat-value" id="projectsThisYear"></div>
-                        <div>Projects This Year</div>
+                        <div class="stat-label">Projects This Year</div>
                     </div>
-                    <div class="stat-item">
+                    <div class="stat-card">
                         <div class="stat-value" id="teamRating"></div>
-                        <div>Team Rating</div>
+                        <div class="stat-label">Team Rating</div>
                     </div>
                 </div>
-                <div class="team-member-list" id="teamMemberList"></div>
-                <button class="btn" onclick="hideTeamDetails()">Back to Teams</button>
+                <div class="card-title">Team Members</div>
+                <div id="teamMemberList"></div>
+                <button class="btn btn-secondary" onclick="hideTeamDetails()">Back to Teams</button>
             </div>
-            <div id="memberDetails" class="member-details" style="display: none;">
-                <h3 id="memberName"></h3>
+            <div id="memberDetails" class="card" style="display: none;">
+                <div class="card-title" id="memberName"></div>
                 <p>Position: <span id="memberPosition"></span></p>
+                <p>Specialty: <span id="memberSpecialty"></span></p>
                 <p>Experience: <span id="memberExperience"></span></p>
                 <p>Skills: <span id="memberSkills"></span></p>
                 <p>Current Project: <span id="memberCurrentProject"></span></p>
                 <p>Tasks Completed: <span id="memberTasksCompleted"></span></p>
-                <button class="btn" onclick="hideMemberDetails()">Back to Team</button>
+                <div class="card-title">Weekly Attendance</div>
+                <div id="memberAttendance" class="attendance-grid"></div>
+                <button class="btn btn-secondary" onclick="hideMemberDetails()">Back to Team</button>
             </div>
         </div>
+
         <div id="employeeDashboard" class="dashboard">
-            <div class="header">
-                <h2>Employee Dashboard</h2>
-                <div>
-                    <button class="btn" onclick="logout()">Logout</button>
-                </div>
-            </div>
-            <div class="employee-info">
-                <h3 id="employeeName"></h3>
+            <div class="card">
+                <div class="card-title" id="employeeName"></div>
                 <p>Team: <span id="employeeTeam"></span></p>
                 <p>Position: <span id="employeePosition"></span></p>
-                <div class="employee-stats">
-                    <div class="employee-stat-item">
-                        <div class="employee-stat-value" id="tasksCompleted"></div>
-                        <div>Tasks Completed</div>
+                <div class="grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="tasksCompleted"></div>
+                        <div class="stat-label">Tasks Completed</div>
                     </div>
-                    <div class="employee-stat-item">
-                        <div class="employee-stat-value" id="projectsContributed"></div>
-                        <div>Projects Contributed</div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="projectsContributed"></div>
+                        <div class="stat-label">Projects Contributed</div>
                     </div>
-                    <div class="employee-stat-item">
-                        <div class="employee-stat-value" id="efficiency"></div>
-                        <div>Efficiency</div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="efficiency"></div>
+                        <div class="stat-label">Efficiency</div>
                     </div>
                 </div>
-                <div class="project-list">
-                    <h4>Projects</h4>
-                    <div id="employeeProjects"></div>
-                </div>
+            </div>
+            <div class="card">
+                <div class="card-title">Weekly Attendance</div>
+                <div id="employeeAttendance" class="attendance-grid"></div>
+            </div>
+            <div class="card">
+                <div class="card-title">Projects</div>
+                <div id="employeeProjects"></div>
+            </div>
+            <div class="card">
+                <div class="card-title">My Tasks</div>
+                <ul id="employeeTasks" class="task-list">
+                </ul>
                 <div id="taskForm">
-                    <h4>Add New Task</h4>
                     <div class="form-group">
                         <label for="taskName">Task Name:</label>
                         <input type="text" id="taskName" required>
@@ -383,17 +364,11 @@
                         <label for="taskDueDate">Due Date:</label>
                         <input type="date" id="taskDueDate" required>
                     </div>
-                    <button class="btn" onclick="addTask()">Add Task</button>
-                </div>
-                <div id="employeeTasks">
-                    <h4>My Tasks</h4>
-                    <!-- Tasks will be dynamically added here -->
+                    <button class="btn btn-primary" onclick="addTask()">Add Task</button>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Login Modal -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeLoginModal()">&times;</span>
@@ -406,10 +381,9 @@
                 <label for="loginPassword">Password:</label>
                 <input type="password" id="loginPassword" required>
             </div>
-            <button class="btn" onclick="login()">Login</button>
+            <button class="btn btn-primary" onclick="login()">Login</button>
         </div>
     </div>
-
     <div id="signUpModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeSignUpModal()">&times;</span>
@@ -429,90 +403,77 @@
                     <option value="admin">Admin</option>
                 </select>
             </div>
-            <button class="btn" onclick="signUp()">Sign Up</button>
+            <button class="btn btn-primary" onclick="signUp()">Sign Up</button>
         </div>
     </div>
 
     <div id="notificationArea"></div>
 
     <script>
-        let currentUser = null;
-        let users = {
-            admin: { username: 'admin', password: '1234', role: 'admin' },
-            employee: { username: 'employee', password: '1234', role: 'employee' }
-        };
-
-        const teamData = {
-            development: {
-                name: 'Development Team',
-                description: 'Our development team is responsible for building and maintaining our software products.',
-                currentProject: 'E-commerce Platform',
-                progress: 75,
-                completed: 12,
-                efficiency: '92%',
-                projectsThisYear: 15,
-                rating: '4.8/5',
-                members: [
-                    { name: 'John Doe 👑', position: 'Team Leader', experience: '8 years', skills: 'JavaScript, React, Node.js', currentProject: 'E-commerce Platform', tasksCompleted: 45 },
-                    { name: 'Jane Smith', position: 'Senior Developer', experience: '6 years', skills: 'Python, Django, AWS', currentProject: 'E-commerce Platform', tasksCompleted: 38 },
-                    { name: 'Mike Johnson', position: 'Full Stack Developer', experience: '4 years', skills: 'JavaScript, Vue.js, Express', currentProject: 'Mobile App Backend', tasksCompleted: 32 },
-                    { name: 'Emily Brown', position: 'Junior Developer', experience: '2 years', skills: 'HTML, CSS, JavaScript', currentProject: 'CRM System', tasksCompleted: 25 }
-                ]
+        const teams = [
+            { 
+                id: 1, 
+                name: 'Web Development Team', 
+                description: 'Responsible for front-end and back-end web development', 
+                efficiency: 88, 
+                projectsThisYear: 15, 
+                rating: 4.7 
             },
-            design: {
-                name: 'Design Team',
-                description: 'Our design team creates beautiful and intuitive user interfaces for our products.',
-                currentProject: 'Mobile App UI',
-                progress: 60,
-                completed: 8,
-                efficiency: '88%',
-                projectsThisYear: 10,
-                rating: '4.6/5',
-                members: [
-                    { name: 'Sarah Lee 👑', position: 'Design Lead', experience: '7 years', skills: 'UI/UX Design, Sketch, Figma', currentProject: 'Mobile App UI', tasksCompleted: 40 },
-                    { name: 'Tom Wilson', position: 'Senior Designer', experience: '5 years', skills: 'Graphic Design, Adobe Creative Suite', currentProject: 'Mobile App UI', tasksCompleted: 35 },
-                    { name: 'Lucy Chen', position: 'UI Designer', experience: '3 years', skills: 'UI Design, Prototyping, Adobe XD', currentProject: 'Website Redesign', tasksCompleted: 28 },
-                    { name: 'David Kim', position: 'Junior Designer', experience: '1 year', skills: 'Illustration, Icon Design', currentProject: 'Branding Project', tasksCompleted: 20 }
-                ]
+            { 
+                id: 2, 
+                name: 'Mobile App Team', 
+                description: 'Develops mobile applications for iOS and Android', 
+                efficiency: 92, 
+                projectsThisYear: 10, 
+                rating: 4.8 
             },
-            marketing: {
-                name: 'Marketing Team',
-                description: 'Our marketing team develops and implements strategies to promote our products and services.',
-                currentProject: 'Social Media Campaign',
-                progress: 40,
-                completed: 15,
-                efficiency: '90%',
-                projectsThisYear: 18,
-                rating: '4.7/5',
-                members: [
-                    { name: 'Emma Davis 👑', position: 'Marketing Manager', experience: '9 years', skills: 'Digital Marketing, SEO, Content Strategy', currentProject: 'Social Media Campaign', tasksCompleted: 50 },
-                    { name: 'Chris Taylor', position: 'Social Media Specialist', experience: '4 years', skills: 'Social Media Management, Analytics', currentProject: 'Social Media Campaign', tasksCompleted: 42 },
-                    { name: 'Olivia White', position: 'Content Creator', experience: '3 years', skills: 'Copywriting, Blog Management', currentProject: 'Content Calendar', tasksCompleted: 36 },
-                    { name: 'Ryan Garcia', position: 'Marketing Analyst', experience: '2 years', skills: 'Data Analysis, Google Analytics', currentProject: 'Performance Reporting', tasksCompleted: 30 }
-                ]
+            { 
+                id: 3, 
+                name: 'Data Science Team', 
+                description: 'Analyzes data and builds machine learning models', 
+                efficiency: 85, 
+                projectsThisYear: 8, 
+                rating: 4.6 
             },
-            sales: {
-                name: 'Sales Team',
-                description: 'Our sales team is responsible for generating revenue and building client relationships.',
-                currentProject: 'Q3 Sales Strategy',
-                progress: 80,
-                completed: 20,
-                efficiency: '95%',
-                projectsThisYear: 22,
-                rating: '4.9/5',
-                members: [
-                    { name: 'Alex Turner 👑', position: 'Sales Director', experience: '10 years', skills: 'B2B Sales, Account Management', currentProject: 'Q3 Sales Strategy', tasksCompleted: 55 },
-                    { name: 'Sophie Martin', position: 'Senior Sales Representative', experience: '6 years', skills: 'Negotiation, CRM Management', currentProject: 'New Client Acquisition', tasksCompleted: 48 },
-                    { name: 'Daniel Lee', position: 'Sales Representative', experience: '3 years', skills: 'Cold Calling, Lead Generation', currentProject: 'Lead Nurturing', tasksCompleted: 40 },
-                    { name: 'Rachel Green', position: 'Junior Sales Representative', experience: '1 year', skills: 'Customer Service, Product Knowledge', currentProject: 'Client Support', tasksCompleted: 32 }
-                ]
+            { 
+                id: 4, 
+                name: 'DevOps Team', 
+                description: 'Manages infrastructure and deployment pipelines', 
+                efficiency: 90, 
+                projectsThisYear: 20, 
+                rating: 4.9 
             }
-        };
+        ];
+
+        const employees = [
+            { id: 1, name: 'John Doe', team: 'Web Development Team', position: 'Senior Frontend Developer', specialty: 'React', experience: '7 years', skills: 'JavaScript, React, Redux, HTML, CSS', currentProject: 'E-commerce Platform', tasksCompleted: 52, attendance: [1, 1, 1, 1, 0, 1, 1], isLeader: true },
+            { id: 2, name: 'Jane Smith', team: 'Web Development Team', position: 'Backend Developer', specialty: 'Node.js', experience: '5 years', skills: 'Node.js, Express, MongoDB, RESTful APIs', currentProject: 'E-commerce Platform', tasksCompleted: 45, attendance: [1, 1, 1, 1, 1, 0, 1] },
+            { id: 3, name: 'Mike Johnson', team: 'Web Development Team', position: 'UI/UX Designer', specialty: 'User Interface Design', experience: '4 years', skills: 'Figma, Adobe XD, Sketch, User Research', currentProject: 'E-commerce Platform', tasksCompleted: 38, attendance: [1, 1, 0, 1, 1, 1, 1] },
+            { id: 4, name: 'Emily Brown', team: 'Web Development Team', position: 'Full Stack Developer', specialty: 'MERN Stack', experience: '6 years', skills: 'React, Node.js, Express, MongoDB, GraphQL', currentProject: 'E-commerce Platform', tasksCompleted: 49, attendance: [1, 1, 1, 1, 1, 1, 0] },
+            
+            { id: 5, name: 'Alex Lee', team: 'Mobile App Team', position: 'iOS Developer', specialty: 'Swift', experience: '6 years', skills: 'Swift, Objective-C, UIKit, Core Data', currentProject: 'Fitness Tracking App', tasksCompleted: 50, attendance: [1, 1, 1, 1, 1, 1, 1], isLeader: true },
+            { id: 6, name: 'Sarah Chen', team: 'Mobile App Team', position: 'Android Developer', specialty: 'Kotlin', experience: '5 years', skills: 'Kotlin, Java, Android SDK, Jetpack Compose', currentProject: 'Fitness Tracking App', tasksCompleted: 47, attendance: [1, 1, 1, 0, 1, 1, 1] },
+            { id: 7, name: 'David Kim', team: 'Mobile App Team', position: 'Mobile UI/UX Designer', specialty: 'Mobile User Experience', experience: '4 years', skills: 'Sketch, Figma, Prototyping, User Testing', currentProject: 'Fitness Tracking App', tasksCompleted: 41, attendance: [1, 1, 1, 1, 1, 0, 1] },
+            { id: 8, name: 'Lisa Wang', team: 'Mobile App Team', position: 'QA Engineer', specialty: 'Mobile App Testing', experience: '3 years', skills: 'Appium, Espresso, XCTest, Manual Testing', currentProject: 'Fitness Tracking App', tasksCompleted: 55, attendance: [1, 0, 1, 1, 1, 1, 1] },
+            
+            { id: 9, name: 'Robert Taylor', team: 'Data Science Team', position: 'Data Scientist', specialty: 'Machine Learning', experience: '8 years', skills: 'Python, TensorFlow, PyTorch, Scikit-learn', currentProject: 'Customer Segmentation Model', tasksCompleted: 40, attendance: [1, 1, 1, 1, 1, 1, 0], isLeader: true },
+            { id: 10, name: 'Emma Davis', team: 'Data Science Team', position: 'Data Analyst', specialty: 'Data Visualization', experience: '4 years', skills: 'SQL, Tableau, Power BI, Excel', currentProject: 'Customer Segmentation Model', tasksCompleted: 48, attendance: [1, 1, 0, 1, 1, 1, 1] },
+            { id: 11, name: 'Chris Wilson', team: 'Data Science Team', position: 'Big Data Engineer', specialty: 'Distributed Computing', experience: '6 years', skills: 'Hadoop, Spark, Kafka, Hive', currentProject: 'Customer Segmentation Model', tasksCompleted: 42, attendance: [1, 1, 1, 1, 0, 1, 1] },
+            { id: 12, name: 'Olivia Martinez', team: 'Data Science Team', position: 'NLP Specialist', specialty: 'Natural Language Processing', experience: '5 years', skills: 'NLTK, spaCy, Gensim, Transformers', currentProject: 'Customer Segmentation Model', tasksCompleted: 39, attendance: [0, 1, 1, 1, 1, 1, 1] },
+            
+            { id: 13, name: 'Daniel Lee', team: 'DevOps Team', position: 'DevOps Engineer', specialty: 'CI/CD', experience: '7 years', skills: 'Jenkins, GitLab CI, Docker, Kubernetes', currentProject: 'Microservices Migration', tasksCompleted: 58, attendance: [1, 1, 1, 1, 1, 1, 1], isLeader: true },
+            { id: 14, name: 'Sophia Patel', team: 'DevOps Team', position: 'Cloud Architect', specialty: 'Cloud Infrastructure', experience: '6 years', skills: 'AWS, Azure, Terraform, CloudFormation', currentProject: 'Microservices Migration', tasksCompleted: 51, attendance: [1, 1, 1, 1, 0, 1, 1] },
+            { id: 15, name: 'James Wilson', team: 'DevOps Team', position: 'Site Reliability Engineer', specialty: 'System Reliability', experience: '5 years', skills: 'Prometheus, Grafana, ELK Stack, Ansible', currentProject: 'Microservices Migration', tasksCompleted: 46, attendance: [1, 0, 1, 1, 1, 1, 1] },
+            { id: 16, name: 'Ava Thompson', team: 'DevOps Team', position: 'Security Engineer', specialty: 'Cybersecurity', experience: '4 years', skills: 'Penetration Testing, SIEM, IDS/IPS, Compliance', currentProject: 'Microservices Migration', tasksCompleted: 43, attendance: [1, 1, 1, 1, 1, 0, 1] }
+        ];
+
+        let currentUser = null;
+        let currentUserType = null;
 
         function showLoginModal(userType) {
-            document.getElementById('loginModalTitle').textContent = `Login as ${userType.charAt(0).toUpperCase() + userType.slice(1)}`;
             document.getElementById('loginModal').style.display = 'block';
-            currentUser = userType;
+            document.getElementById('loginModalTitle').innerText = userType === 'admin' ? 'Admin Login' : 'Employee Login';
+            currentUserType = userType;
         }
 
         function closeLoginModal() {
@@ -531,19 +492,13 @@
             const username = document.getElementById('loginUsername').value;
             const password = document.getElementById('loginPassword').value;
 
-            if (users[username] && users[username].password === password && users[username].role === currentUser) {
-                document.getElementById('loginPage').style.display = 'none';
+            if (username && password) {
+                currentUser = { name: username, type: currentUserType };
                 closeLoginModal();
-                if (currentUser === 'admin') {
-                    document.getElementById('adminDashboard').style.display = 'block';
-                    initializeAdminDashboard();
-                } else {
-                    document.getElementById('employeeDashboard').style.display = 'block';
-                    loadEmployeeData(username);
-                }
+                updateDashboard();
                 showNotification(`Welcome, ${username}!`);
             } else {
-                showNotification('Invalid credentials. Please try again.', 'error');
+                showNotification('Invalid username or password', 'error');
             }
         }
 
@@ -552,64 +507,119 @@
             const password = document.getElementById('signUpPassword').value;
             const role = document.getElementById('signUpRole').value;
 
-            if (users[username]) {
-                showNotification('Username already exists. Please choose a different one.', 'error');
-            } else {
-                users[username] = { username, password, role };
+            if (username && password) {
                 closeSignUpModal();
-                showNotification('Sign up successful! You can now log in.');
+                showNotification(`Account created for ${username} as ${role}`);
+            } else {
+                showNotification('Invalid username or password', 'error');
             }
+        }
+
+        function updateDashboard() {
+            const adminDashboard = document.getElementById('adminDashboard');
+            const employeeDashboard = document.getElementById('employeeDashboard');
+            const navButtons = document.getElementById('navButtons');
+
+            if (currentUser.type === 'admin') {
+                adminDashboard.style.display = 'block';
+                employeeDashboard.style.display = 'none';
+                populateTeamGrid();
+            } else {
+                adminDashboard.style.display = 'none';
+                employeeDashboard.style.display = 'block';
+                populateEmployeeDashboard();
+            }
+
+            navButtons.innerHTML = `
+                <button class="btn btn-secondary" onclick="logout()">Logout</button>
+            `;
         }
 
         function logout() {
             currentUser = null;
-            document.getElementById('loginPage').style.display = 'block';
+            currentUserType = null;
             document.getElementById('adminDashboard').style.display = 'none';
             document.getElementById('employeeDashboard').style.display = 'none';
-            showNotification('Logged out successfully.');
+            document.getElementById('navButtons').innerHTML = `
+                <button class="btn btn-secondary" onclick="showLoginModal('admin')">Admin Login</button>
+                <button class="btn btn-secondary" onclick="showLoginModal('employee')">Employee Login</button>
+                <button class="btn btn-primary" onclick="showSignUpModal()">Sign Up</button>
+            `;
+            showNotification('Logged out successfully');
         }
 
-        function showTeamDetails(team) {
-            const data = teamData[team];
-            document.getElementById('teamName').textContent = data.name;
-            document.getElementById('teamDescription').textContent = data.description;
-            document.getElementById('currentProject').textContent = data.currentProject;
-            document.getElementById('progressBar').style.width = `${data.progress}%`;
-            document.getElementById('completedProjects').textContent = data.completed;
-            document.getElementById('teamEfficiency').textContent = data.efficiency;
-            document.getElementById('projectsThisYear').textContent = data.projectsThisYear;
-            document.getElementById('teamRating').textContent = data.rating;
+        function populateTeamGrid() {
+            const teamGrid = document.getElementById('teamGrid');
+            teamGrid.innerHTML = '';
+
+            teams.forEach(team => {
+                const teamCard = document.createElement('div');
+                teamCard.className = 'card';
+                teamCard.innerHTML = `
+                    <div class="card-title">${team.name}</div>
+                    <p>${team.description}</p>
+                    <button class="btn btn-secondary" onclick="showTeamDetails(${team.id})">View Details</button>
+                `;
+                teamGrid.appendChild(teamCard);
+            });
+        }
+
+        function showTeamDetails(teamId) {
+            const team = teams.find(t => t.id === teamId);
+            const teamDetails = document.getElementById('teamDetails');
+            const teamGrid = document.getElementById('teamGrid');
+
+            document.getElementById('teamName').innerText = team.name;
+            document.getElementById('teamDescription').innerText = team.description;
+            document.getElementById('teamEfficiency').innerText = team.efficiency + '%';
+            document.getElementById('projectsThisYear').innerText = team.projectsThisYear;
+            document.getElementById('teamRating').innerText = team.rating;
 
             const teamMemberList = document.getElementById('teamMemberList');
             teamMemberList.innerHTML = '';
-            data.members.forEach(member => {
-                const memberElement = document.createElement('div');
-                memberElement.className = 'team-member-item';
-                memberElement.textContent = member.name;
-                memberElement.onclick = () => showMemberDetails(team, member.name);
-                teamMemberList.appendChild(memberElement);
+            employees.filter(e => e.team === team.name).forEach(employee => {
+                const memberItem = document.createElement('div');
+                memberItem.className = 'team-member';
+                memberItem.innerHTML = `
+                    <p>${employee.name} - ${employee.position} ${employee.isLeader ? '<span class="crown">👑</span>' : ''}</p>
+                    <button class="btn btn-secondary" onclick="showMemberDetails(${employee.id})">View Details</button>
+                `;
+                teamMemberList.appendChild(memberItem);
             });
 
-            document.getElementById('teamDetails').style.display = 'block';
-            document.querySelector('.team-grid').style.display = 'none';
+            teamDetails.style.display = 'block';
+            teamGrid.style.display = 'none';
         }
 
         function hideTeamDetails() {
             document.getElementById('teamDetails').style.display = 'none';
-            document.querySelector('.team-grid').style.display = 'grid';
+            document.getElementById('teamGrid').style.display = 'grid';
         }
 
-        function showMemberDetails(team, memberName) {
-            const member = teamData[team].members.find(m => m.name === memberName);
-            document.getElementById('memberName').textContent = member.name;
-            document.getElementById('memberPosition').textContent = member.position;
-            document.getElementById('memberExperience').textContent = member.experience;
-            document.getElementById('memberSkills').textContent = member.skills;
-            document.getElementById('memberCurrentProject').textContent = member.currentProject;
-            document.getElementById('memberTasksCompleted').textContent = member.tasksCompleted;
+        function showMemberDetails(employeeId) {
+            const employee = employees.find(e => e.id === employeeId);
+            const memberDetails = document.getElementById('memberDetails');
+            const teamDetails = document.getElementById('teamDetails');
 
-            document.getElementById('teamDetails').style.display = 'none';
-            document.getElementById('memberDetails').style.display = 'block';
+            document.getElementById('memberName').innerText = employee.name + (employee.isLeader ? ' 👑' : '');
+            document.getElementById('memberPosition').innerText = employee.position;
+            document.getElementById('memberSpecialty').innerText = employee.specialty;
+            document.getElementById('memberExperience').innerText = employee.experience;
+            document.getElementById('memberSkills').innerText = employee.skills;
+            document.getElementById('memberCurrentProject').innerText = employee.currentProject;
+            document.getElementById('memberTasksCompleted').innerText = employee.tasksCompleted;
+
+            const attendanceGrid = document.getElementById('memberAttendance');
+            attendanceGrid.innerHTML = '';
+            employee.attendance.forEach((day, index) => {
+                const dayElement = document.createElement('div');
+                dayElement.className = `attendance-day ${day ? 'present' : ''}`;
+                dayElement.innerText = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][index];
+                attendanceGrid.appendChild(dayElement);
+            });
+
+            memberDetails.style.display = 'block';
+            teamDetails.style.display = 'none';
         }
 
         function hideMemberDetails() {
@@ -617,158 +627,102 @@
             document.getElementById('teamDetails').style.display = 'block';
         }
 
-        function initializeAdminDashboard() {
-            const teamGrid = document.querySelector('.team-grid');
-            teamGrid.innerHTML = '';
-            for (const [teamKey, teamInfo] of Object.entries(teamData)) {
-                const teamBlock = document.createElement('div');
-                teamBlock.className = 'team-block';
-                teamBlock.onclick = () => showTeamDetails(teamKey);
-                teamBlock.innerHTML = `
-                    <h3>${teamInfo.name}</h3>
-                    <div class="team-members">
-                        ${teamInfo.members.map(member => `<span class="team-member">${member.name}</span>`).join('')}
-                    </div>
-                    <div class="project-info">
-                        <p>Current Project: ${teamInfo.currentProject}</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: ${teamInfo.progress}%;"></div>
-                        </div>
-                        <p>Completed Projects: ${teamInfo.completed}</p>
-                    </div>
-                `;
-                teamGrid.appendChild(teamBlock);
-            }
-        }
+        function populateEmployeeDashboard() {
+            // Simulated employee data
+            const employee = employees[0]; // Assuming the first employee for demonstration
 
-        function loadEmployeeData(username) {
-            // In a real application, this data would be fetched from a server
-            const employeeData = {
-                name: username,
-                team: 'Development',
-                position: 'Senior Developer',
-                tasksCompleted: 45,
-                projectsContributed: 8,
-                efficiency: '94%',
-                projects: [
-                    { name: 'E-commerce Platform', progress: 75 },
-                    { name: 'Mobile App Backend', progress: 90 },
-                    { name: 'CRM System', progress: 60 }
-                ]
-            };
+            document.getElementById('employeeName').innerText = employee.name;
+            document.getElementById('employeeTeam').innerText = employee.team;
+            document.getElementById('employeePosition').innerText = employee.position;
+            document.getElementById('tasksCompleted').innerText = employee.tasksCompleted;
+            document.getElementById('projectsContributed').innerText = '3'; // Simulated data
+            document.getElementById('efficiency').innerText = '92%'; // Simulated data
 
-            document.getElementById('employeeName').textContent = employeeData.name;
-            document.getElementById('employeeTeam').textContent = employeeData.team;
-            document.getElementById('employeePosition').textContent = employeeData.position;
-            document.getElementById('tasksCompleted').textContent = employeeData.tasksCompleted;
-            document.getElementById('projectsContributed').textContent = employeeData.projectsContributed;
-            document.getElementById('efficiency').textContent = employeeData.efficiency;
-
-            const projectsContainer = document.getElementById('employeeProjects');
-            projectsContainer.innerHTML = '';
-            employeeData.projects.forEach(project => {
-                const projectElement = document.createElement('div');
-                projectElement.className = 'project-item';
-                projectElement.innerHTML = `
-                    <h5>${project.name}</h5>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: ${project.progress}%;"></div>
-                    </div>
-                    <p>Progress: ${project.progress}%</p>
-                `;
-                projectsContainer.appendChild(projectElement);
+            const attendanceGrid = document.getElementById('employeeAttendance');
+            attendanceGrid.innerHTML = '';
+            employee.attendance.forEach((day, index) => {
+                const dayElement = document.createElement('div');
+                dayElement.className = `attendance-day ${day ? 'present' : ''}`;
+                dayElement.innerText = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][index];
+                attendanceGrid.appendChild(dayElement);
             });
 
-            loadTasks();
+            const projectsContainer = document.getElementById('employeeProjects');
+            projectsContainer.innerHTML = `
+                <p>Current Project: ${employee.currentProject}</p>
+                <p>Previous Projects: Project A, Project B</p>
+            `;
+
+            populateTaskList();
+        }
+
+        function populateTaskList() {
+            const taskList = document.getElementById('employeeTasks');
+            taskList.innerHTML = '';
+            
+            // Simulated tasks
+            const tasks = [
+                { name: 'Implement login functionality', dueDate: '2023-06-15' },
+                { name: 'Design homepage layout', dueDate: '2023-06-20' },
+                { name: 'Write unit tests', dueDate: '2023-06-25' }
+            ];
+
+            tasks.forEach(task => {
+                const taskItem = document.createElement('li');
+                taskItem.className = 'task-item';
+                taskItem.innerHTML = `
+                    <span>${task.name} (Due: ${task.dueDate})</span>
+                    <button onclick="completeTask(this)">Complete</button>
+                `;
+                taskList.appendChild(taskItem);
+            });
         }
 
         function addTask() {
             const taskName = document.getElementById('taskName').value;
             const taskDueDate = document.getElementById('taskDueDate').value;
-            
+
             if (taskName && taskDueDate) {
-                const tasksContainer = document.getElementById('employeeTasks');
-                const taskElement = document.createElement('div');
-                taskElement.className = 'task-item';
-                taskElement.innerHTML = `
+                const taskList = document.getElementById('employeeTasks');
+                const taskItem = document.createElement('li');
+                taskItem.className = 'task-item';
+                taskItem.innerHTML = `
                     <span>${taskName} (Due: ${taskDueDate})</span>
                     <button onclick="completeTask(this)">Complete</button>
                 `;
-                tasksContainer.appendChild(taskElement);
-                
+                taskList.appendChild(taskItem);
+
                 document.getElementById('taskName').value = '';
                 document.getElementById('taskDueDate').value = '';
-                
-                showNotification('Task added successfully!');
+                showNotification('Task added successfully');
             } else {
-                showNotification('Please fill in all task details.', 'error');
+                showNotification('Please fill in all task details', 'error');
             }
         }
 
         function completeTask(button) {
-            const taskItem = button.parentElement;
-            taskItem.remove();
-            
-            // Update tasks completed count
-            const tasksCompletedElement = document.getElementById('tasksCompleted');
-            const currentTasksCompleted = parseInt(tasksCompletedElement.textContent);
-            tasksCompletedElement.textContent = currentTasksCompleted + 1;
-            
-            showNotification('Task completed!');
-        }
-
-        function loadTasks() {
-            // In a real application, this data would be fetched from a server
-            const tasks = [
-                { name: 'Update user interface', dueDate: '2024-10-15' },
-                { name: 'Optimize database queries', dueDate: '2024-10-20' },
-                { name: 'Write unit tests', dueDate: '2024-10-25' }
-            ];
-
-            const tasksContainer = document.getElementById('employeeTasks');
-            tasksContainer.innerHTML = '<h4>My Tasks</h4>';
-            tasks.forEach(task => {
-                const taskElement = document.createElement('div');
-                taskElement.className = 'task-item';
-                taskElement.innerHTML = `
-                    <span>${task.name} (Due: ${task.dueDate})</span>
-                    <button onclick="completeTask(this)">Complete</button>
-                `;
-                tasksContainer.appendChild(taskElement);
-            });
+            button.parentElement.remove();
+            showNotification('Task completed');
         }
 
         function showNotification(message, type = 'success') {
             const notificationArea = document.getElementById('notificationArea');
             const notification = document.createElement('div');
             notification.className = `notification ${type}`;
-            notification.textContent = message;
+            notification.innerText = message;
             notificationArea.appendChild(notification);
 
-            // Add the 'show' class to trigger the transition
-            setTimeout(() => notification.classList.add('show'), 10);
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
 
-            // Remove the notification after 3 seconds
             setTimeout(() => {
                 notification.classList.remove('show');
-                setTimeout(() => notification.remove(), 300);
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
             }, 3000);
         }
-
-        // Initialize the application
-        document.addEventListener('DOMContentLoaded', () => {
-            // Add event listeners for closing modals when clicking outside
-            window.onclick = function(event) {
-                if (event.target == document.getElementById('loginModal')) {
-                    closeLoginModal();
-                }
-                if (event.target == document.getElementById('signUpModal')) {
-                    closeSignUpModal();
-                }
-            }
-
-            // You might want to add more initialization code here
-        });
     </script>
 </body>
 </html>
